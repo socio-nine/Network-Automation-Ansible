@@ -1,0 +1,20 @@
+- hosts: bigip
+  gather_facts: no
+
+  vars:
+    provider:
+      password: "{{ ansible_password }}"
+      server: "{{ ansible_host }}"
+      user: "{{ ansible_user }}"
+      validate_certs: no
+
+  tasks:
+    - name: run show sys version
+      bigip_command:
+        commands: show sys version
+        provider: "{{ provider }}"
+      register: result
+ 
+    - name: display show sys version
+      debug:
+        var: result['stdout_lines']

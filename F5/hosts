@@ -1,0 +1,13 @@
+localhost ansible_connection=local ansible_python_interpreter=python
+slb01 ansible_host=10.100.116.200
+slb02 ansible_host=10.100.116.201
+
+
+[all:vars]
+ansible_user = 'admin'
+ansible_password = 'eve'
+ansible_connection = 'local'
+
+[bigip]
+slb01
+slb02

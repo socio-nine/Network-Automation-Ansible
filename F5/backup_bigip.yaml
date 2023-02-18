@@ -1,0 +1,24 @@
+- hosts: bigip
+  gather_facts: no
+
+  vars:
+    provider:
+      password: "{{ ansible_password }}"
+      server: "{{ ansible_host }}"
+      user: "{{ ansible_user }}"
+      validate_certs: no
+      date: "{{ lookup('pipe','date +%Y%m%d') }}"
+
+  tasks:
+    - name: backup
+
+
+# tasks:
+#   - name: get backup
+#     eos_command:
+#       commands: "show running-config"
+#     register: backup
+#   - name: save file
+#     copy:
+#       content: "{{ backup.stdout[0]\n }}"
+#     dest: "/etc/ansible/arista_backup/{{ inventory_hostname }}_running-config_{{ date }}.log"
